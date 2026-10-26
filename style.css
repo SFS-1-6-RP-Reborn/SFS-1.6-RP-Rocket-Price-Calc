@@ -1,0 +1,58 @@
+html, body {
+    background-color: transparent;
+}
+html::before, body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background:
+        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.8)),
+        url("https://raw.githubusercontent.com/RoshanGamer7791/SFS1.6-RP-S1-Website/main/background.png") center / cover no-repeat;
+
+    filter: blur(10px);
+    transform: scale(1.05);
+
+    z-index: -1;
+}
+
+textarea {
+    background-color: rgba(30, 30, 30, 0.2);
+    padding: 8px 16px;
+    border: 2px solid white;
+    border-radius: 10px;
+    color: white;
+    width: 95%;
+    height: 250px;
+    font-size: 20px;
+    font-family: 'Jetbrains Mono';
+    font-weight: bold;
+}
+
+button {
+    background-color: rgba(75, 0, 255, 0.8);
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 8px 16px;
+    color: white;
+    font-size: 20px;
+    font-family: 'Jetbrains Mono';
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: rgba(50, 0, 255, 0.8);
+}
+
+label {
+    background-color: transparent;
+    font-size: 30px;
+    font-family: 'Jetbrains Mono';
+    color: white;
+}
+
+h1 {
+    background-color: transparent;
+    color: white;
+    font-family: 'Jetbrains Mono';
+}
