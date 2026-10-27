@@ -13,17 +13,19 @@ function getRocketPrice(parts) {
         const partNumValues = part.N;
         if (partName.includes("Fairing")) {
             if (partName.includes("Procedural")) {
-                if (partName.includes("Ring")) {
+                if (partName.includes("B_Ring")) {
                     const width = partNumValues.width;
                     const height = 3;
                     console.log(2 * (width + height));
                     price += 2 * (width + height);
+                    return;
                 }
                 else {
-                    const width = (partNumValues.width_a + partNumValues.width_b) / 2
+                    const width = (partNumValues.width_a + partNumValues.width_b) / 2;
                     const height = partNumValues.height;
                     console.log(2 * (width + height));
                     price += 2 * (width + height);
+                    return;
                 }
             } 
             if (partName.includes("Round")) {
@@ -31,12 +33,14 @@ function getRocketPrice(parts) {
                 const height = 2 * width;
                 console.log(2 * (width + height));
                 price += 2 * (width + height);
+                return;
             }
             else {
-                const width = partNumValues.width_original;
+                const width = (partNumValues.width_a + partNumValues.width_b) / 2;
                 const height = partNumValues.height;
-                console.log(2 * (width + height));
+                console.log(partName, width, height, 2 * (width + height));
                 price += 2 * (width + height);
+                return;
             }
         }
         if (partName.includes("Fuel Tank")) {
@@ -46,38 +50,77 @@ function getRocketPrice(parts) {
                     const height = width * 2;
                     console.log(10 * (width + height));
                     price += 10 * (width + height);
+                    return;
                 } else {
                     const width = (partNumValues.width_a + partNumValues.width_b) / 2;
                     const height = partNumValues.height;
                     console.log(10 * (width + height));
                     price += 10 * (width + height)
+                    return;
                 }
             } else {
                 const width = partNumValues.width_original;
                 const height = partNumValues.height;
                 console.log(10 * (width + height));
                 price += 10 * (width + height);
+                return;
             }
         }
         if (partName.includes("Probe")) {
             if (partName.includes("Procedural")) {
                 console.log(5 + partNumValues.torque);
                 price += 5 + partNumValues.torque;
+                return;
             } else {
                 price += 9
+                return;
             }
         }
         if (partName.includes("Heat Shield")) {
             console.log(partNumValues.size);
             price += 3 * partNumValues.size;
+            return;
         }
         if (partName.includes("Structural") || partName.includes("Strut")) {
             console.log(partNumValues.size);
             price += partNumValues.size
+            return;
         }
-        if (partName.includes("Procedural") && partName.includes("Engine")) {
-            console.log(5 * partNumValues.thrust ** 0.6 * (partNumValues.isp / 300) ** 3);
-            price += 5 * partNumValues.thrust ** 0.6 * (partNumValues.isp / 300) ** 3
+        if (partName.includes("Engine")) {
+            if (partName.includes("Procedural")) {
+                console.log(5 * partNumValues.thrust ** 0.6 * (partNumValues.isp / 300) ** 3);
+                price += 5 * partNumValues.thrust ** 0.6 * (partNumValues.isp / 300) ** 3
+                return;
+            } else {
+                const ENGINE_DATA = {
+                    Titan: {
+                        thrust: 400,
+                        isp: 240
+                    },
+                    Hawk: {
+                        thrust: 120,
+                        isp: 240
+                    },
+                    Fronteir: {
+                        thrust: 100,
+                        isp: 290
+                    },
+                    Valiant: {
+                        thrust: 40,
+                        isp: 280
+                    },
+                    Kolibri: {
+                        thrust: 15,
+                        isp: 260
+                    }
+                };
+                ENGINE_DATA.forEach(([engineName, engineData]) => {
+                    if (partName.includes(engineName)) {
+                        price += 5 * engineData.thrust ** 0.6 * (isp / 300) ** 3;
+                    }
+                });
+                return;
+            }
         }
     });
     priceHeading.innerText = `Price: $${price.toFixed(2)}`
