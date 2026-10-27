@@ -112,6 +112,10 @@ function getRocketPrice(parts) {
                     Kolibri: {
                         thrust: 15,
                         isp: 260
+                    },
+                    Ion: {
+                        thrust: 1.5,
+                        isp: 1200
                     }
                 };
                 ENGINE_DATA.forEach(([engineName, engineData]) => {
