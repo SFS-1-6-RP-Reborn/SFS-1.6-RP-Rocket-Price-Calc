@@ -120,7 +120,7 @@ function getRocketPrice(parts) {
                 };
                  for (const [engineName, engineData] of Object.entries(ENGINE_DATA)) {
                     if (partName.includes(engineName)) {
-                        price += 5 * engineData.thrust ** 0.6 * (isp / 300) ** 3;
+                        price += 5 * engineData.thrust ** 0.6 * (engineData.isp / 300) ** 3;
                     }
                 }
                 return;
