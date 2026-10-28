@@ -25,7 +25,7 @@ textarea {
     width: 95%;
     height: 250px;
     font-size: 20px;
-    font-family: 'Jetbrains Mono';
+    font-family: 'Arial';
     font-weight: bold;
 }
 
@@ -36,7 +36,7 @@ button {
     padding: 8px 16px;
     color: white;
     font-size: 20px;
-    font-family: 'Jetbrains Mono';
+    font-family: 'Arial';
     font-weight: bold;
 }
 
@@ -47,12 +47,12 @@ button:hover {
 label {
     background-color: transparent;
     font-size: 30px;
-    font-family: 'Jetbrains Mono';
+    font-family: 'Arial';
     color: white;
 }
 
 h1 {
     background-color: transparent;
     color: white;
-    font-family: 'Jetbrains Mono';
+    font-family: 'Arial';
 }

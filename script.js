@@ -6,7 +6,7 @@ function getRocketJSON() {
 
 function getRocketPrice(parts) {
     const priceHeading = document.getElementById("price-heading");
-    priceHeading.innerText = "Price: $3.14159265"
+    priceHeading.innerText = "Error loading the price"
     let price = 0;
     parts.forEach(part => {
         const partName = part.n;
@@ -118,11 +118,11 @@ function getRocketPrice(parts) {
                         isp: 1200
                     }
                 };
-                ENGINE_DATA.forEach(([engineName, engineData]) => {
+                 for (const [engineName, engineData] of Object.entries(ENGINE_DATA)) {
                     if (partName.includes(engineName)) {
                         price += 5 * engineData.thrust ** 0.6 * (isp / 300) ** 3;
                     }
-                });
+                }
                 return;
             }
         }
