@@ -35,6 +35,13 @@ function getRocketPrice(parts) {
                 price += 2 * (width + height);
                 return;
             }
+            if (partName.includes("Cone")) {
+                const width = partNumValues.width_original;
+                const height = 2 * width;
+                console.log(2 * (width + height));
+                price += 2 * (width + height);
+                return;
+            }
             else {
                 const width = (partNumValues.width_a + partNumValues.width_b) / 2;
                 const height = partNumValues.height;
