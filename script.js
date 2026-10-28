@@ -16,14 +16,19 @@ function getRocketPrice(parts) {
                 if (partName.includes("B_Ring")) {
                     const width = partNumValues.width;
                     const height = 3;
-                    console.log(2 * (width + height));
+                    console.log(partName, 2 * (width + height));
                     price += 2 * (width + height);
+                    return;
+                }
+                if (partName.includes("Curve")){
+                    console.log(partName, 2 * (partNumValues.size * 2));
+                    price += 2 * (partNumValues.size * 2);
                     return;
                 }
                 else {
                     const width = (partNumValues.width_a + partNumValues.width_b) / 2;
                     const height = partNumValues.height;
-                    console.log(2 * (width + height));
+                    console.log(partName, 2 * (width + height));
                     price += 2 * (width + height);
                     return;
                 }
@@ -31,14 +36,14 @@ function getRocketPrice(parts) {
             if (partName.includes("Round")) {
                 const width = partNumValues.width_original;
                 const height = 2 * width;
-                console.log(2 * (width + height));
+                console.log(partName, 2 * (width + height));
                 price += 2 * (width + height);
                 return;
             }
             if (partName.includes("Cone")) {
                 const width = partNumValues.width_original;
                 const height = 2 * width;
-                console.log(2 * (width + height));
+                console.log(partName, 2 * (width + height));
                 price += 2 * (width + height);
                 return;
             }
@@ -55,20 +60,20 @@ function getRocketPrice(parts) {
                 if (partName.includes("Cone")) {
                     const width = partNumValues.width;
                     const height = width * 2;
-                    console.log(10 * (width + height));
+                    console.log(partName, 10 * (width + height));
                     price += 10 * (width + height);
                     return;
                 } else {
                     const width = (partNumValues.width_a + partNumValues.width_b) / 2;
                     const height = partNumValues.height;
-                    console.log(10 * (width + height));
+                    console.log(partName, 10 * (width + height));
                     price += 10 * (width + height)
                     return;
                 }
             } else {
                 const width = partNumValues.width_original;
                 const height = partNumValues.height;
-                console.log(10 * (width + height));
+                console.log(partName, 10 * (width + height));
                 price += 10 * (width + height);
                 return;
             }
@@ -84,13 +89,26 @@ function getRocketPrice(parts) {
             }
         }
         if (partName.includes("Heat Shield")) {
-            console.log(partNumValues.size);
-            price += 3 * partNumValues.size;
-            return;
+            if (!partName.includes("Procedural")) {
+                console.log(partName, partNumValues.size);
+                price += 3 * partNumValues.size;
+                return;
+            } else {
+                console.log(partName, partNumValues.width);
+                price += 3 * partNumValues.width;
+                return;
+            }
         }
         if (partName.includes("Structural") || partName.includes("Strut")) {
-            console.log(partNumValues.size);
-            price += partNumValues.size
+            if (partName != "Procedural Structural 4" && partName != "Procedural Structural 3") {
+                console.log(partName, partNumValues.size);
+                price += partNumValues.size
+                return;
+            }
+            const width = (partNumValues.width_a + partNumValues.width_b) / 2;
+            const height = partNumValues.height;
+            console.log(partName, 10 * (width + height));
+            price += 10 * (width + height)
             return;
         }
         if (partName.includes("Engine")) {
