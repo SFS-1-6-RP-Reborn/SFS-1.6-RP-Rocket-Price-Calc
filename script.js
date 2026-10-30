@@ -13,14 +13,19 @@ function getRocketPrice(parts) {
         const partNumValues = part.N;
         if (partName.includes("Fairing")) {
             if (partName.includes("Procedural")) {
-                if (partName.includes("B_Ring")) {
+                if (partName.includes("Ring")) {
                     const width = partNumValues.width;
                     const height = 3;
                     console.log(partName, 2 * (width + height));
                     price += 2 * (width + height);
                     return;
                 }
-                if (partName.includes("Curve")){
+                if (partName.includes("Curve")) {
+                    console.log(partName, 2 * (partNumValues.size * 2));
+                    price += 2 * (partNumValues.size * 2);
+                    return;
+                }
+                if (partName.includes("Aero Cone")) {
                     console.log(partName, 2 * (partNumValues.size * 2));
                     price += 2 * (partNumValues.size * 2);
                     return;
