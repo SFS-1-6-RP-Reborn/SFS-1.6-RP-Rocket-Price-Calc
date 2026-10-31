@@ -94,15 +94,9 @@ function getRocketPrice(parts) {
             }
         }
         if (partName.includes("Heat Shield")) {
-            if (!partName.includes("Procedural")) {
-                console.log(partName, partNumValues.size);
-                price += 3 * partNumValues.size;
-                return;
-            } else {
-                console.log(partName, partNumValues.width);
-                price += 3 * partNumValues.width;
-                return;
-            }
+            console.log(partName, partNumValues.width);
+            price += 3 * partNumValues.width;
+            return;
         }
         if (partName.includes("Structural") || partName.includes("Strut")) {
             if (partName != "Procedural Structural 4" && partName != "Procedural Structural 3") {
