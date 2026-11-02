@@ -1,4 +1,6 @@
 function getRocketJSON() {
+    const priceHeading = document.getElementById("price-heading");
+    priceHeading.innerText = "Error parsing the JSON"
     const bpString = document.getElementById("parts-json").value;
     const bpJSON = JSON.parse(bpString);
     getRocketPrice(bpJSON.parts);
@@ -13,6 +15,11 @@ function getRocketPrice(parts) {
         const partNumValues = part.N;
         if (partName.includes("Fairing")) {
             if (partName.includes("Procedural")) {
+                if (partName.includes("Heat Shield")) {
+                    console.log(partName, partNumValues.width);
+                    price += 3 * partNumValues.width;
+                    return;
+                }
                 if (partName.includes("Ring")) {
                     const width = partNumValues.width;
                     const height = 3;
