@@ -32,7 +32,14 @@ function getRocketPrice(parts) {
                     price += 2 * (partNumValues.size * 2);
                     return;
                 }
-                if (partName.includes("Aero Cone")) {
+                if (partName == "Procedural Fairing Cone No-Collision") {
+                    const width = partNumValues.width;
+                    const height = partNumValues.height;
+                    console.log(partName, 2 * (width + height));
+                    price += 2 * (width + height);
+                    return;
+                }
+                if (partName.includes("Cone")) {
                     console.log(partName, 2 * (partNumValues.size * 2));
                     price += 2 * (partNumValues.size * 2);
                     return;
@@ -106,15 +113,22 @@ function getRocketPrice(parts) {
             return;
         }
         if (partName.includes("Structural") || partName.includes("Strut")) {
-            if (partName != "Procedural Structural 4" && partName != "Procedural Structural 3") {
+            if (partName != "Procedural Structural 4" && partName != "Procedural Structural 3" && partName != "Procedural Structural 5") {
                 console.log(partName, partNumValues.size);
                 price += partNumValues.size
                 return;
             }
+            if (partName == "Procedural Structural 5") {
+                const width = partNumValues.width;
+                const height = partNumValues.height;
+                console.log(partName, width + height);
+                price += width + height;
+                return;
+            }
             const width = (partNumValues.width_a + partNumValues.width_b) / 2;
             const height = partNumValues.height;
-            console.log(partName, 10 * (width + height));
-            price += 10 * (width + height)
+            console.log(partName, width + height);
+            price += width + height
             return;
         }
         if (partName.includes("Engine")) {
